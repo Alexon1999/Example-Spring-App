@@ -21,8 +21,13 @@ pipeline {
             }
         }
 
+        stage('Cleanup') {
+            cleanWs ()
+        }
+
         stage('SonarLint') {
-            linting()
+            osfBuilderSuiteStandaloneSonarLinter(
+            sourcePattern: './src/main/java/com/epsi/exampleApp/*')
         }
 
         stage('Build') {
