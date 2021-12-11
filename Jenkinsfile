@@ -21,6 +21,11 @@ pipeline {
             }
         }
 
+        stage('SonarLint') {
+            osfBuilderSuiteStandaloneSonarLinter(
+            sourcePattern: './src/main/java/com/epsi/exampleApp/*'
+        }
+
         stage('Build') {
             agent any
             when {
