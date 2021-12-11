@@ -21,15 +21,6 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
-            cleanWs ()
-        }
-
-        stage('SonarLint') {
-            osfBuilderSuiteStandaloneSonarLinter(
-            sourcePattern: './src/main/java/com/epsi/exampleApp/*')
-        }
-
         stage('Build') {
             agent any
             when {
@@ -49,14 +40,5 @@ pipeline {
 def getCommitHash() {
     node {
         return sh(script: 'git rev-parse --short HEAD', returnStdout: true)
-    }
-}
-
-def linting() {
-    node {
-        stage('SonarLint') {
-            osfBuilderSuiteStandaloneSonarLinter(
-            sourcePattern: './src/main/java/com/epsi/exampleApp/*')
-        }
     }
 }
