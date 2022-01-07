@@ -8,6 +8,19 @@ pipeline {
     }
 
     stages {
+        stage('Code Anaylysis By Sonarcloud') {
+            agent {
+                docker {
+                    image 'sonarsource/sonar-scanner-cli'
+                    args '-e SONAR_HOST_URL="http://sonarcloud.io" \
+                    -e SONAR_LOGIN="f7bfbbe85dee7d917eaaf755fcf8bd5105383b09" \
+                    -v $PWD:/usr/src'
+                }
+            }
+            steps {
+            }
+        }
+
         stage('Unit tests') {
             agent {
                 docker {
