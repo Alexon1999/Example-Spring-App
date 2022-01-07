@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# sonarcloud
+sonar-project.properties
+.scannerwork
